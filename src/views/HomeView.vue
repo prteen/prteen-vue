@@ -1,9 +1,6 @@
-<script setup>
-import TheWelcome from '../components/TheWelcome.vue'
-</script>
-
 <template>
   <main>
-    <TheWelcome />
+    <h1>Welcome to Prteen!</h1>
+    <a href="/register">Register</a>
   </main>
 </template>
