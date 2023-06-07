@@ -14,10 +14,31 @@
           <label for="confirmPassword">Confirm Password</label>
           <input type="password" id="confirmPassword" v-model="confirmPassword" />
         </div>
-        <button type="submit">Register</button>
+        <pre @submit="(f) => form = f">{{ form }}</pre>
+        <input type="submit" value="Register" />
       </form>
   </div>
 </template>
 
 <script>
+export default {
+  // data() {
+  //   return {
+  //     form: {
+  //       email: ,
+  //       password: '',
+  //       confirmPassword: ''
+  //     }
+  //   }
+  // },
+  methods: {
+    register(submitEvent) {
+      this.data = submitEvent
+    },
+    submit() {
+      console.log(this.data)
+      this.$emit('submit', this.data_)
+    }
+  }
+}
 </script>
