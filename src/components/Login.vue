@@ -1,6 +1,6 @@
 <script>
-import { user, set_user } from '../states/auth.js'
-import { login } from '../services/api.js'
+import { user, set_user, save_to_storage, update_user } from '../states/auth.js'
+import { login, me } from '../services/api.js'
 
 export default {
   data() {
@@ -14,18 +14,27 @@ export default {
   methods: {
     login() {
       this.$emit('submit', this.form)
-      login(this.form.username, this.form.password).then(response => {
+      login(this.form.username, this.form.password).then(async response => {
         console.log(response)
         if(response.type == "success") {
-          set_user({
-            username: this.form.username,
-            password: this.form.password,
+          let user = set_user({
+            username: undefined,
             token: response.access_token,
-            email: undefined
+            email: undefined,
+            id: undefined
           })
-          alert("Login successful!")
+          save_to_storage()
+          try {
+            update_user(await me())
+            save_to_storage()
+          } catch (error) {
+            throw error
+            alert("error while retrieving further user details")
+            alert(JSON.stringify(error))
+          }
         } else {
           alert("Login failed!")
+          alert(JSON.stringify(error))
         }
       }).catch(error => {
         console.log(error)
