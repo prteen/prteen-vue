@@ -34,3 +34,14 @@ export async function me() {
   return await query("GET", "/auth/me")
 }
 
+export async function get_friendships() {
+  return await query("GET", "/friendships")
+}
+
+export async function update_friendship(id, stat) {
+  return await query("PUT", "/friendships/" + id, {status: stat})
+}
+
+export async function delete_friendship(id) {
+  return await query("DELETE", "/friendships/" + id)
+}
