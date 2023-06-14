@@ -45,3 +45,7 @@ export async function update_friendship(id, stat) {
 export async function delete_friendship(id) {
   return await query("DELETE", "/friendships/" + id)
 }
+
+export async function new_friendship(username) {
+  return await query("POST", "/friendships", {to: username})
+}

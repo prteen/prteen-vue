@@ -24,7 +24,12 @@ const router = createRouter({
       path: '/friendships',
       name: 'friendships',
       component: () => FriendshipView
-    }
+    },
+    {
+      path: '/friendships/new',
+      name: 'new_friendship',
+      component: () => import('../views/NewFriendshipView.vue')
+    },
   ]
 })
 

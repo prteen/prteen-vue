@@ -1,5 +1,6 @@
 <script setup>
   import FriendCard from '../components/FriendCard.vue'
+  import { get_friendships } from '../services/api.js' 
 </script>
 
 
@@ -7,19 +8,19 @@
   <div>
     <div class="title">
       <h1>Friendships</h1>
-      <button @click="refresh">
-        Refresh
-      </button>
+      <div class="buttons">
+        <button @click="refresh">Refresh</button>
+        <button @click="$router.push('/friendships/new')">New Friendship</button>
+      </div>
     </div>
-    <li v-for="item in friendships">
-      <FriendCard v-bind:item="item" />
-    </li>
+    <div v-for="item in friendships">
+        <FriendCard v-bind:item="item" />
+    </div>
   </div>
 </template>
 
 
 <script>
-import { get_friendships } from '../services/api.js' 
 
 export default {
   data() {

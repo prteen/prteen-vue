@@ -9,15 +9,15 @@
     name: 'FriendCard',
     props: ['item'],
     methods: {
-      accept_friendship(item) {
-        update_friendship(item._id, "accepted").then(response => {
+      accept(item) {
+        update_friendship(this.item._id, "accepted").then(response => {
           alert(JSON.stringify(response))
         }).catch(error => {
           console.log(error)
           alert(JSON.stringify(error))
         })
       },
-      decline_friendship(item) {
+      reject(item) {
         console.log(item)
         update_friendship(item._id, "rejected").then(response => {
           alert(JSON.stringify(response))
@@ -26,9 +26,9 @@
           alert(JSON.stringify(error))
         })
       },
-      delete_friendship(item) {
+      del(item) {
         console.log(item)
-        delete_friendship(item).then(response => {
+        delete_friendship(this.item._id).then(response => {
           alert(JSON.stringify(response))
         }).catch(error => {
           console.log(error)
@@ -40,7 +40,7 @@
 </script>
 
 <template>
-    <div class="card-content">
+    <v-card class="card-content">
       <tr>
           Image: <img :src="item.image" />
       </tr>
@@ -57,17 +57,17 @@
           Status: {{ item.status }}
       </tr>
       <div class="card-footer">
-            <button class="button is-success" @click="accept_friendship(item)">
+            <button class="button is-success" @click="accept(item)">
               Accept
             </button>
-            <button class="button is-danger" @click="decline_friendship(item)">
-              Decline
+            <button class="button is-danger" @click="reject(item)">
+              Reject
             </button>
-            <button class="button is-danger" @click="delete_friendship(item._id)">
+            <button class="button is-danger" @click="del(item)">
               Delete
             </button>
       </div>
-    </div>
+    </v-card>
 </template>
 
 <style scoped>
@@ -76,6 +76,9 @@
     flex-direction: column;
     align-items: left;
     justify-content: center;
+    background-color: #131313;
+    border-radius: 10px;
+    margin: 8px;
   }
   .card-footer {
     display: flex;
