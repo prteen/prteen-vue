@@ -1,4 +1,5 @@
 <script setup>
+import { user } from './states/auth.js'
 import { RouterLink, RouterView } from 'vue-router'
 </script>
 
@@ -7,7 +8,8 @@ import { RouterLink, RouterView } from 'vue-router'
     <div class="wrapper">
       <nav>
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/register">Register</RouterLink>
+        <RouterLink to="/register">Register</RouterLink><br>
+        <RouterLink to="/login">Login</RouterLink><br>
       </nav>
     </div>
   </header>
