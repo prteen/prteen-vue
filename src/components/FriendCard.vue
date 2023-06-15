@@ -76,9 +76,10 @@
     flex-direction: column;
     align-items: left;
     justify-content: center;
-    background-color: #131313;
     border-radius: 10px;
+    background-color: #f1f1f1;
     margin: 8px;
+    padding: 10px;
   }
   .card-footer {
     display: flex;
