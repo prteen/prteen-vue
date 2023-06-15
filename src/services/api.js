@@ -14,6 +14,7 @@ export async function query(method, uri, data) {
   if(token) {
     headers.Authorization = "Bearer " + token
   }
+  console.log(data)
   const response = await fetch(api.endpoint + api.base_uri + uri, {
     method: method,
     headers: headers,
@@ -32,5 +33,9 @@ export async function register(username, password, email) {
 
 export async function me() {
   return await query("GET", "/auth/me")
+}
+
+export async function create_party(party) {
+  return await query("POST", "/parties/organizers/", party)
 }
 

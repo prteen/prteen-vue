@@ -18,6 +18,11 @@ const router = createRouter({
       path: '/login',
       name: 'login',
       component: () => import('../views/LoginView.vue')
+    },
+    {
+      path: '/party/create',
+      name: 'create-party',
+      component: () => import('../views/CreatePartyView.vue')
     }
   ]
 })

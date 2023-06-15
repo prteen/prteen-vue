@@ -14,7 +14,8 @@ export default {
   methods: {
     login() {
       this.$emit('submit', this.form)
-      login(this.form.username, this.form.password).then(async response => {
+      console.log(this.data())
+      login(this.data().form, this.form.password).then(async response => {
         console.log(response)
         if(response.type == "success") {
           let user = set_user({
