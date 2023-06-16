@@ -3,7 +3,7 @@ import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <script>
-import { user, logged } from './states/user.js'
+import { user, logged, logout } from './states/user.js'
 </script>
 
 <template>
@@ -18,7 +18,8 @@ import { user, logged } from './states/user.js'
         <RouterLink v-if="!logged()" to="/register">Register</RouterLink>
         <RouterLink v-if="!logged()" to="/login">Login</RouterLink>
         <RouterLink v-if="logged()" to="/party/create">Create Party</RouterLink>
-        <RouterLink v-if="logged()" to="/friendships">Friendships</RouterLink><br>
+        <RouterLink v-if="logged()" to="/friendships">Friendships</RouterLink>
+        <a v-if="logged()" @click="logout()" href="#">Logout</a>
     </div>
   </div>
 </nav>

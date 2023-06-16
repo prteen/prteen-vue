@@ -14,11 +14,11 @@ export async function query(method, uri, data) {
   if(token) {
     headers.Authorization = "Bearer " + token
   }
-  console.log(data)
   const response = await fetch(api.endpoint + api.base_uri + uri, {
     method: method,
     headers: headers,
-    body: JSON.stringify(data)
+    body: JSON.stringify(data),
+    cache: 'no-cache', 
   })
   return await response.json()
 }
@@ -41,6 +41,10 @@ export async function create_party(party) {
 
 export async function get_friendships() {
   return await query("GET", "/friendships")
+}
+
+export async function get_user_by_id(id) {
+  return await query("GET", "/users/id/" + id)
 }
 
 export async function update_friendship(id, stat) {

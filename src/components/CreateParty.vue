@@ -1,5 +1,6 @@
 <script setup>
 import TagsSelector from './TagsSelector.vue'
+import UserSelector from './UserSelector.vue'
 </script>
 
 <script>
@@ -18,7 +19,8 @@ export default {
         location: "here",
         max_participants: 20,
         participants: [],
-        invited: []
+        invited: [],
+        self_participating: true
       }
     }
   },
@@ -28,6 +30,18 @@ export default {
       Object.keys(this.form).forEach(key => {
         data[key] = this.form[key]
       })
+
+      //processing
+      if(data.private) {
+        data.participants = []
+      } else {
+        data.invited = []
+      }
+      if(data.self_participating) {
+        data.participants.push(user.id)
+      }
+      delete data.self_participating
+      
       create_party(data).then(response => {
         if(response.type == "success") {
           alert("Party created!")
@@ -37,6 +51,8 @@ export default {
       }).catch(error => {
         alert("Party creation failed!")
       })
+    },
+    change_privacy() {
     }
   }
 }
@@ -60,13 +76,21 @@ export default {
         </tr>
         <tr>
           <td>Privacy</td>
-          <td><input type="checkbox" v-model="form.private" /></td>
-        </tr>
-        <tr v-if="form.private">
-          <td>Invintees</td>
           <td>
+            <input type="checkbox" v-model="form.private" @change="change_privacy" />
+            <span v-if="form.private">Private</span>
+            <span v-else>Public</span>
+          </td> 
+        </tr>
+        <tr v-if="form.private" style="/* border: 1px solid black */">
+          <td>Invintees</td>
+          <td style="padding-left: 15px">
             <UserSelector v-model="form.invited" /> 
           </td>
+        </tr>
+        <tr>
+          <td>Will you join?</td>
+          <td><input type="checkbox" v-model="form.self_participating" /></td>
         </tr>
         <tr>
           <td>Tags</td>
