@@ -39,3 +39,18 @@ export async function create_party(party) {
   return await query("POST", "/parties/organizers/", party)
 }
 
+export async function get_friendships() {
+  return await query("GET", "/friendships")
+}
+
+export async function update_friendship(id, stat) {
+  return await query("PUT", "/friendships/" + id, {status: stat})
+}
+
+export async function delete_friendship(id) {
+  return await query("DELETE", "/friendships/" + id)
+}
+
+export async function new_friendship(username) {
+  return await query("POST", "/friendships", {to: username})
+}
