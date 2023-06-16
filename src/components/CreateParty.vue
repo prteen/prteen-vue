@@ -1,5 +1,9 @@
+<script setup>
+import TagsSelector from './TagsSelector.vue'
+</script>
+
 <script>
-import { user } from '../states/auth.js'
+import { user } from '../states/user.js'
 import { create_party } from '../services/api.js'
 
 export default {
@@ -41,7 +45,7 @@ export default {
 <template>
   <main>
     <form @submit.prevent="submit">
-      <table style="width: 100%">
+      <table>
         <tr>
           <td>Title</td>
           <td><input type="text" v-model="form.title" /></td>
@@ -58,9 +62,17 @@ export default {
           <td>Privacy</td>
           <td><input type="checkbox" v-model="form.private" /></td>
         </tr>
+        <tr v-if="form.private">
+          <td>Invintees</td>
+          <td>
+            <UserSelector v-model="form.invited" /> 
+          </td>
+        </tr>
         <tr>
           <td>Tags</td>
-          <td><input type="hidden" v-model="form.tags" /></td>
+          <td>
+            <TagsSelector v-model="form.tags" />
+          </td>
         </tr>
         <tr>
           <td>Location</td>

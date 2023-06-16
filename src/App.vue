@@ -1,6 +1,9 @@
-<script setup>
-import { user } from './states/auth.js' 
+<script setup> 
 import { RouterLink, RouterView } from 'vue-router'
+</script>
+
+<script>
+import { user, logged } from './states/user.js'
 </script>
 
 <template>
@@ -8,9 +11,9 @@ import { RouterLink, RouterView } from 'vue-router'
     <div class="wrapper">
       <nav>
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/register">Register</RouterLink>
-        <RouterLink v-if="user.token" to="/login">Login</RouterLink>
-        <RouterLink v-if="user.token" to="/party/create">Create Party</RouterLink>
+        <RouterLink v-if="!logged()" to="/register">Register</RouterLink>
+        <RouterLink v-if="!logged()" to="/login">Login</RouterLink>
+        <RouterLink v-if="logged()" to="/party/create">Create Party</RouterLink>
       </nav>
     </div>
   </header>

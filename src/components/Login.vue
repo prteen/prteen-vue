@@ -1,21 +1,21 @@
 <script>
-import { user, set_user, save_to_storage, update_user } from '../states/auth.js'
+import { user, set_user, save_to_storage, update_user } from '../states/user.js'
 import { login, me } from '../services/api.js'
 
-export default {
+export default { 
   data() {
     return {
       form: {
         username: '',
         password: '',
-      }
+      },
     }
   },
   methods: {
     login() {
       this.$emit('submit', this.form)
-      console.log(this.data())
-      login(this.data().form, this.form.password).then(async response => {
+      console.log(this.form)
+      login(this.form.username, this.form.password).then(async response => {
         console.log(response)
         if(response.type == "success") {
           let user = set_user({
@@ -35,7 +35,7 @@ export default {
           }
         } else {
           alert("Login failed!")
-          alert(JSON.stringify(error))
+          alert(JSON.stringify(response))
         }
       }).catch(error => {
         console.log(error)
@@ -54,6 +54,7 @@ export default {
       <label for="username">Username</label>
       <input type="text" id="username" v-model="form.username" />
     </div>
+    {{ User }}
     <div>
       <label for="password">Password</label>
       <input type="password" id="password" v-model.lazy="form.password" />

@@ -1,5 +1,5 @@
 <script setup>
-import { user } from '../states/auth.js'
+import { user } from '../states/user.js'
 </script>
 
 <template>
