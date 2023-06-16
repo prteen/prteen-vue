@@ -2,7 +2,7 @@
   <form @submit.prevent="submit">
     <label for="username">Username</label>
     <input type="text" id="username" v-model="form.username" /><br>
-    <button @click="submit">Send Friend request</button>
+    <input type="submit" value="Send Friend request">
   </form>
 </template>
 
