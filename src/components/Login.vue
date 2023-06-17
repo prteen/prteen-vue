@@ -41,6 +41,7 @@ export default {
         console.log(error)
         alert(JSON.stringify(error))
       })
+      this.$router.push('/')
     }
   }
 }

@@ -4,6 +4,18 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <script>
 import { user, logged, logout } from './states/user.js'
+export default {
+  name: 'App',
+  methods: {
+    log_out() {
+      logout()
+      this.$router.push('/')
+    },
+    log_in() {
+      this.$router.push('/')
+    },
+  }
+}
 </script>
 
 <template>
@@ -17,9 +29,10 @@ import { user, logged, logout } from './states/user.js'
         <RouterLink to="/">Home</RouterLink>
         <RouterLink v-if="!logged()" to="/register">Register</RouterLink>
         <RouterLink v-if="!logged()" to="/login">Login</RouterLink>
+        <RouterLink to="/parties">Parties</RouterLink>
         <RouterLink v-if="logged()" to="/party/create">Create Party</RouterLink>
         <RouterLink v-if="logged()" to="/friendships">Friendships</RouterLink>
-        <a v-if="logged()" @click="logout()" href="#">Logout</a>
+        <a v-if="logged()" @click="log_out()" href="#">Logout</a>
     </div>
   </div>
 </nav>

@@ -35,6 +35,16 @@ const router = createRouter({
       name: 'new_friendship',
       component: () => import('../views/NewFriendshipView.vue')
     },
+    {
+      path: '/parties',
+      name: 'parties',
+      component: () => import('../views/PartiesView.vue')
+    },
+    {
+      path: '/parties/id/:id',
+      name: 'party-details',
+      component: () => import('../views/PartyDetailsView.vue')
+    },
   ]
 })
 

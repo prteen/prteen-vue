@@ -39,6 +39,18 @@ export async function create_party(party) {
   return await query("POST", "/parties/organizers/", party)
 }
 
+export async function get_parties() {
+  return await query("GET", "/parties")
+}
+
+export async function get_party_by_id(id) {
+  return await query("GET", "/parties/id/" + id)
+}
+
+export async function join_party(id) {
+  return await query("PUT", "/parties/join/" + id, {action: 'join'})
+}
+
 export async function get_friendships() {
   return await query("GET", "/friendships")
 }

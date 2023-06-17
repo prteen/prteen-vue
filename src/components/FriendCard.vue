@@ -63,7 +63,7 @@
 <template>
     <v-card class="card-content">
       <tr>
-          Image: <v-img src="/picture.png" alt="" contain height="50px" width="50px">
+          Image: <v-img src="{{ item.image }}" alt="" contain height="50px" width="50px">
 </v-img>
       </tr>
       <tr>

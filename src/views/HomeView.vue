@@ -4,7 +4,7 @@ import { user } from '../states/user.js'
 
 <template>
   <main>
-    <h1>Welcome to Prteen, {{ user.username }}!</h1>
+    <h1>Welcome to Prteen {{ user.username || '' }}!</h1>
     <div v-if="user.token">
       <p>Your details are:</p>
       <table>
