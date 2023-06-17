@@ -1,6 +1,7 @@
 <script setup>
 import TagsSelector from './TagsSelector.vue'
 import UserSelector from './UserSelector.vue'
+import PlaceInput from './PlaceInput.vue'
 </script>
 
 <script>
@@ -16,7 +17,7 @@ export default {
         date: new Date(),
         private: false,
         tags: [],
-        location: "here",
+        location: "{\"string\": \"Trento, Autonomous Province of Trento, Italy\", \"coords\": {\"lat\": 46.066422, \"lng\": 11.125760}}",
         max_participants: 20,
         participants: [],
         invited: [],
@@ -100,7 +101,7 @@ export default {
         </tr>
         <tr>
           <td>Location</td>
-          <td><input type="text" v-model="form.location" /></td>
+          <td><PlaceInput v-model="form.location" /></td>
         </tr>
         <tr>
           <td>Max Participants</td>
@@ -109,7 +110,9 @@ export default {
         <input type="submit" value="Create Party" />
       </table>
     </form>
-    {{ form }}
+    <pre>
+{{ form }}
+    </pre>
   </main>
 </template>
 
