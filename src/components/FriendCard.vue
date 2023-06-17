@@ -1,5 +1,5 @@
 <script setup>
-  import { update_friendship, delete_friendship } from '../services/api.js'
+  import { update_friendship, delete_friendship, get_user_by_id } from '../services/api.js'
   const props = defineProps(['item'])
   console.log(props)
 </script>
@@ -8,6 +8,15 @@
   export default {
     name: 'FriendCard',
     props: ['item'],
+    data() {
+      return {
+        from: '',
+        to: ''
+      }
+    },
+    mounted() {
+      this.load_friendship()
+    },
     methods: {
       accept(item) {
         update_friendship(this.item._id, "accepted").then(response => {
@@ -19,7 +28,7 @@
       },
       reject(item) {
         console.log(item)
-        update_friendship(item._id, "rejected").then(response => {
+        update_friendship(this.item._id, "rejected").then(response => {
           alert(JSON.stringify(response))
         }).catch(error => {
           console.log(error)
@@ -34,7 +43,19 @@
           console.log(error)
           alert(JSON.stringify(error))
         })
-      }
+      },
+      load_friendship() {
+        get_user_by_id(this.item.from).then(response => {
+          this.from = response.username || 'You'
+        }).catch(error => {
+          console.log(error)
+        })
+        get_user_by_id(this.item.to).then(response => {
+          this.to = response.username || 'You'
+        }).catch(error => {
+          console.log(error)
+        })
+      },
     }
   }
 </script>
@@ -42,19 +63,20 @@
 <template>
     <v-card class="card-content">
       <tr>
-          Image: <img :src="item.image" />
+          Image: <v-img src="/picture.png" alt="" contain height="50px" width="50px">
+</v-img>
       </tr>
       <tr>
-          Friendship ID: {{ item._id }}
+          From: {{ from }}
       </tr>
       <tr>
-          From: {{ item.from }}
-      </tr>
-      <tr>
-          To: {{ item.to }}
+          To: {{ to }}
       </tr>
       <tr>
           Status: {{ item.status }}
+      </tr>
+      <tr>
+          Friendship ID: {{ item._id }}
       </tr>
       <div class="card-footer">
             <button class="button is-success" @click="accept(item)">
