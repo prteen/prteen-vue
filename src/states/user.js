@@ -29,7 +29,6 @@ function logged() {
 
 function logout() {
   clear_user()
-  // this.$router.push({name: 'home'})
   storage.clear()
 }
 

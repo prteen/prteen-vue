@@ -9,11 +9,11 @@ import { user } from '../states/user.js'
       <p>Your details are:</p>
       <table>
         <tr>
-          <td>Username</td>
+          <td>Username: </td>
           <td>{{ user.username }}</td>
         </tr>
         <tr>
-          <td>Email</td>
+          <td>Email: </td>
           <td>{{ user.email }}</td>
         </tr>
       </table>
@@ -24,3 +24,10 @@ import { user } from '../states/user.js'
     </div>
   </main>
 </template>
+
+<style scoped>
+main {
+  margin: 0 auto;
+  max-width: 800px;
+}
+</style>

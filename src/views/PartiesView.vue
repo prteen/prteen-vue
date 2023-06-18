@@ -8,9 +8,9 @@
   <div>
     <div class="title">
       <h1>Parties</h1>
-      <div class="buttons">
-        <button @click="refresh">Refresh</button>
-      </div>
+      <form @submit.prevent="refresh">
+        <input type="submit" value="Refresh" />
+      </form>
     </div>
     <div v-for="item in parties">
         <PartyCard v-bind:item="item" />

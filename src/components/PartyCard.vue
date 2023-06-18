@@ -17,7 +17,7 @@
       view_details() {
         const id = this.item._id
         this.$router.push({ path: `/parties/id/${id}` })
-      }
+      },
     }
   }
 </script>
