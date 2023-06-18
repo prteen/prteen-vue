@@ -41,6 +41,10 @@ export default {
 </template>
 
 <style scoped>
+* {
+  margin: 0;   
+  padding: 0;
+}
 
 .v-enter-active,
 .v-leave-active {
@@ -62,7 +66,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  max-width: 800px;
+  /* max-width: 800px; */
 }
 
 header {
