@@ -1,34 +1,74 @@
 <script setup> 
 import { RouterLink, RouterView } from 'vue-router'
+import { Transition } from "vue";
 </script>
 
 <script>
 import { user, logged, logout } from './states/user.js'
+export default {
+  name: 'App',
+  methods: {
+    log_out() {
+      logout()
+      this.$router.push('/')
+    },
+  }
+}
 </script>
 
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Prteen</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  <a class="navbar-brand">
+    <img src="./assets/logo.svg" width="50" height="50" class="d-inline-block align-top" alt="">
+  </a>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
         <RouterLink to="/">Home</RouterLink>
         <RouterLink v-if="!logged()" to="/register">Register</RouterLink>
         <RouterLink v-if="!logged()" to="/login">Login</RouterLink>
+        <RouterLink to="/parties">Parties</RouterLink>
         <RouterLink v-if="logged()" to="/party/create">Create Party</RouterLink>
         <RouterLink v-if="logged()" to="/friendships">Friendships</RouterLink>
-        <a v-if="logged()" @click="logout()" href="#">Logout</a>
+        <a v-if="logged()" @click="log_out()" href="#">Logout</a>
     </div>
   </div>
 </nav>
   <div class="container">
-    <RouterView />
+    <Transition appear>
+      <RouterView />
+    </Transition>
   </div>
 </template>
 
 <style scoped>
+body {
+  margin: 0;   
+  padding: 0;
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 1.5s ease, transform 0.8s ease-in-out;
+  transform: translateY(0px);
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+  transform: translateY(100px);
+}
+
+* {
+  font-family: Fira Sans;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* max-width: 800px; */
+}
+
 header {
   line-height: 1.5;
   max-height: 100vh;
@@ -40,10 +80,9 @@ header {
 }
 
 .container {
-  max-width: 1024px;
-  margin: 0 auto;
-  padding: 0 var(--section-gap);
+  margin: 0 auto; 
   align-items: center;
+  justify-content: center;
 }
 
 nav {
@@ -51,14 +90,27 @@ nav {
   font-size: 12px;
   text-align: left;
   margin-top: 2rem;
+  padding: 0 1rem;
+}
+
+nav a {
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 0;
+  display: block;
+  border-bottom: 1px solid var(--color-border);
 }
 
 nav a.router-link-exact-active {
   color: var(--color-text);
+  
 }
 
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
+nav a:hover {
+  background-color: #e0e0f0;
+  color: var(--color-text);
+  border-radius: 5px;
 }
 
 nav a {

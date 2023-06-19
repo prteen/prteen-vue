@@ -63,7 +63,7 @@
 <template>
     <v-card class="card-content">
       <tr>
-          Image: <v-img src="/picture.png" alt="" contain height="50px" width="50px">
+          Image: <v-img src="{{ item.image }}" alt="" contain height="50px" width="50px">
 </v-img>
       </tr>
       <tr>
@@ -102,6 +102,7 @@
     background-color: #f1f1f1;
     margin: 8px;
     padding: 10px;
+    width: 500px;
   }
   .card-footer {
     display: flex;

@@ -41,6 +41,7 @@ export default {
         console.log(error)
         alert(JSON.stringify(error))
       })
+      this.$router.push('/')
     }
   }
 }
@@ -50,15 +51,17 @@ export default {
 
 <template>
   <form @submit.prevent="login">
-    <div>
-      <label for="username">Username</label>
-      <input type="text" id="username" v-model="form.username" />
-    </div>
+    <table>
+      <tr>
+        <td><label for="username">Username</label></td>
+        <td><input type="text" id="username" v-model="form.username" /></td>
+      </tr>
     {{ User }}
-    <div>
-      <label for="password">Password</label>
-      <input type="password" id="password" v-model.lazy="form.password" />
-    </div>
+      <tr>
+        <td><label for="password">Password</label></td>
+        <td><input type="password" id="password" v-model.lazy="form.password" /></td>
+      </tr>
     <input type="submit" value="Login" />
+    </table>
   </form>
 </template>
