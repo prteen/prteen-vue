@@ -22,7 +22,7 @@
         this.$emit('submit', this.form)
         new_friendship(this.form.username).then(response => {
           if(response.type == "success") {
-            alert(response, "\nFriendship created!")
+            alert("Friendship created!")
           } else {
             alert("Friendship creation failed!")
             console.log(JSON.stringify(error))

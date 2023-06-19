@@ -14,7 +14,7 @@
       </div>
     </div>
     <div v-for="item in friendships">
-        <FriendCard v-bind:item="item" />
+        <FriendCard @refresh="refresh" v-bind:item="item" />
     </div>
   </div>
 </template>
