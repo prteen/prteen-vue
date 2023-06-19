@@ -46,20 +46,22 @@
 </template>
 
 <style scoped>
-  .card-content {
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    justify-content: center;
-    border-radius: 10px;
-    background-color: #f1f1f1;
-    margin: 8px;
-    padding: 10px;
-  }
-  .card-footer {
-    display: flex;
-    flex-direction: row;
-    align-items: left;
-    justify-content: center;
-  }
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+  border-radius: 10px;
+  background-color: #f1f1f1;
+  margin: 8px;
+  padding: 10px;
+  width: 500px;
+}
+.card-footer {
+  display: flex;
+  flex-direction: row;
+  align-items: left;
+  justify-content: center;
+}
 </style>

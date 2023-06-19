@@ -28,10 +28,6 @@ import { user } from '../states/user.js'
 </template>
 
 <style scoped>
-body {
-  margin: 0;   
-  padding: 0;
-}
 
 .homepage { 
   background-image: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(0, 0, 0, 0.5)), url('src/assets/homepage.jpg');

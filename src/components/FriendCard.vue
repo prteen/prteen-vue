@@ -102,6 +102,7 @@
     background-color: #f1f1f1;
     margin: 8px;
     padding: 10px;
+    width: 500px;
   }
   .card-footer {
     display: flex;

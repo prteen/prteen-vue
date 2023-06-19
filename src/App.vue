@@ -41,7 +41,7 @@ export default {
 </template>
 
 <style scoped>
-* {
+body {
   margin: 0;   
   padding: 0;
 }
