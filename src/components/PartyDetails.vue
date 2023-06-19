@@ -43,25 +43,13 @@
   <div>
     <h1>{{ party.title }}</h1>
     <h4>{{ party.description }}</h4>
-    <tr>
-      Tags: {{ party.tags }}
-    </tr>
-    <tr>
-      Location: {{ party.location }}
-    </tr>
-    <tr>
-      Date: {{ party.date }}
-    </tr>
-    <tr>
-      Max participants: {{ party.participants_number }} / {{ party.max_participants }}
-    </tr>
-    <tr>
-      Party ID: {{ party._id }}
-    </tr>
-    <tr>
-      <template v-if="logged">
-        <button  @click="join()">Prteen-cipate!</button>
-      </template>
-    </tr>
+    Tags: {{ party.tags }}<br>
+    Location: {{ party.location }}<br>
+    Date: {{ party.date }}<br>
+    Max participants: {{ party.participants_number }} / {{ party.max_participants }}<br>
+    Party ID: {{ party._id }}<br>
+    <template v-if="logged">
+      <input type="button" @click="join()" value="Prteen-cipate!">
+    </template>
   </div>
 </template>

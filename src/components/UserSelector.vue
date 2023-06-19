@@ -12,7 +12,7 @@ export default {
   props: {
     modelValue: {
       type: Array,
-      default: () => ["degra"]
+      default: []
     }
   },
   mounted() {

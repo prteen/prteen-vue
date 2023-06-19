@@ -1,6 +1,6 @@
 <script setup>
   import PartyDetails from '../components/PartyDetails.vue'
-  import { get_party_by_id } from '../services/api.js'
+  import { get_party } from '../services/api.js'
 </script>
 
 
@@ -27,7 +27,7 @@ export default {
   methods: {
     refresh() {
       const id = this.$route.params.id
-      get_party_by_id(id).then(response => {
+      get_party(id).then(response => {
         console.log(response)
         this.party = response
         this.party.participants_number = this.party.participants.length

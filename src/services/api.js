@@ -1,7 +1,7 @@
 import storage from '../services/storage'
 
 const api = {
-  endpoint: "http://localhost:8080",
+  endpoint: "http://127.0.0.1:8080",
   base_uri: "/api/v1"
 }
 
@@ -43,8 +43,24 @@ export async function get_parties() {
   return await query("GET", "/parties")
 }
 
-export async function get_party_by_id(id) {
+export async function get_party(id) {
   return await query("GET", "/parties/id/" + id)
+}
+
+export async function get_party_organizer(id) {
+  return await query("GET", "/parties/organizers/" + id)
+}
+
+export async function get_parties_organizer() {
+  return await query("GET", "/parties/organizers/")
+}
+
+export async function update_party(id, data) {
+  return await query("PUT", `/parties/organizers/${id}`, data)
+}
+
+export async function delete_party(id) {
+  return await query("DELETE", "/parties/organizers/" + id)
 }
 
 export async function join_party(id) {

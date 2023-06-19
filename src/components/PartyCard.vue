@@ -1,17 +1,9 @@
-<script setup>
-  const props = defineProps(['item'])
-  console.log(props)
-</script>
-
 <script>
   export default {
     name: 'PartyCard',
-    props: ['item'],
-    data() {
-      return {
-      }
-    },
-    mounted() {
+    props: {
+      item: Object,
+      buttons: Object,
     },
     methods: {
       view_details() {
@@ -24,23 +16,12 @@
 
 <template>
     <v-card class="card-content">
-      <tr>
-      Image: <v-img src="{{ item.image }}" alt="" contain height="50px" width="50px">
-</v-img>
-      </tr>
-      <tr>
-          Title: {{ item.title }}
-      </tr>
-      <tr>
-          Date: {{ item.date }}
-      </tr>
-      <tr>
-          Location: {{ item.location }}
-      </tr>
+      Image: <v-img src="{{ item.image }}" alt="" contain height="50px" width="50px"></v-img><br>
+      Title: {{ item.title }}<br>
+      Date: {{ item.date }}<br>
+      Location: {{ item.location }}<br>
       <div class="card-footer">
-            <button class="button is-success" @click="view_details()">
-              View
-            </button>
+        <RouterLink :to="item._id"><input type="button" class="button is-success" value="View"></RouterLink>
       </div> 
     </v-card>
 </template>
