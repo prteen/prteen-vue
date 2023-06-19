@@ -15,11 +15,13 @@
       }
     },
     mounted() {
+      this.get_organizer()
     },
     methods: {
       get_organizer() {
         const id = this.party.organizer
         get_user_by_id(id).then(response => {
+          debugger
           this.organizer = response.username
         }).catch(error => {
           console.log(error)

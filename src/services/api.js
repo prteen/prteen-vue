@@ -72,6 +72,7 @@ export async function get_friendships() {
 }
 
 export async function get_user_by_id(id) {
+  debugger
   return await query("GET", "/users/id/" + id)
 }
 

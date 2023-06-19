@@ -1,29 +1,54 @@
 <script>
-  export default {
-    name: 'PartyCard',
-    props: {
-      item: Object,
-      buttons: Object,
+import strftime from 'strftime'
+
+export default {
+  name: 'PartyCard',
+  data() {
+    return {
+      loading: true
+    }
+  },
+  props: {
+    item: Object,
+  },
+  mounted() {
+    try {
+      this.item.location = JSON.parse(this.item.location)
+    } catch(e) {
+      this.item.location = "N/A"
+    }
+  },
+  methods: {
+    view_details() {
+      const id = this.item._id
+      this.$router.push({ path: `/parties/id/${id}` })
     },
-    methods: {
-      view_details() {
-        const id = this.item._id
-        this.$router.push({ path: `/parties/id/${id}` })
-      },
+    format_date() {
+      return strftime("%y/%m/%d %H:%M", new Date(this.item.date))
+    },
+    location_string() {
+      console.log(this.item)
+      if(!this.item.location)
+        return "none"
+      if(this.item.location.string)
+        return this.item.location.string
+      if(this.item.location.coords)
+        return this.item.location.coords
+      return "none"
     }
   }
+}
 </script>
 
 <template>
-    <v-card class="card-content">
-      Image: <v-img src="{{ item.image }}" alt="" contain height="50px" width="50px"></v-img><br>
+    <div class="card-content">
       Title: {{ item.title }}<br>
-      Date: {{ item.date }}<br>
-      Location: {{ item.location }}<br>
+      Date: {{ format_date() }}<br>
+      Location: {{ location_string() }}<br>
       <div class="card-footer">
         <RouterLink :to="item._id"><input type="button" class="button is-success" value="View"></RouterLink>
-      </div> 
-    </v-card>
+      </div>
+    </div>
 </template>
 
 <style scoped>

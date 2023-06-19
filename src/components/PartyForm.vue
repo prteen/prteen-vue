@@ -17,7 +17,7 @@ export default {
         date: new Date(),
         private: false,
         tags: [],
-        location: "{}",
+        location: null,
         max_participants: 20,
         participants: [],
         invited: [],

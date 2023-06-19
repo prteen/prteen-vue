@@ -13,7 +13,7 @@
       </form>
     </div>
     <div v-for="item in parties">
-        <PartyCard v-bind:item="item" />
+        <PartyCard :item="item" />
     </div>
   </div>
 </template>
