@@ -7,7 +7,8 @@ export default {
   data() {
     return {
       string: "",
-      coords: {} 
+      coords: {},
+      initial: ""
     }
   },
   props: {
@@ -17,7 +18,6 @@ export default {
     },
   },
   mounted() {
-    console.log(this.modelValue)
     let data = JSON.parse(this.modelValue)
     this.string = data.string
     this.coords = data.coords
@@ -26,12 +26,10 @@ export default {
   methods: {
     update(data) {
       this.string = data.formatted_address;
-      console.log(data)
       this.coords = {
         lat: data.latitude,
         lng: data.longitude
       };
-      console.log(this.coords, this.string);
       this.$emit("update:modelValue", JSON.stringify({string: this.string, coords: this.coords}))
     }
   },
@@ -43,7 +41,7 @@ export default {
 
 <template>
   <main>
-    <vue-google-autocomplete placeholder="Party Location" :types="[address,(establishment)]" v-model="initial" id="map" :country="['it']" classname="form-control" v-on:placechanged="update">
+    <vue-google-autocomplete placeholder="Party Location" :types="['address','(establishment)']" v-model="initial" id="map" :country="['it']" classname="form-control" v-on:placechanged="update">
     </vue-google-autocomplete>
   </main>
 </template>

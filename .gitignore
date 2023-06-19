@@ -1,3 +1,5 @@
+Session.vim
+
 # Logs
 logs
 *.log
@@ -26,5 +28,6 @@ coverage
 *.njsproj
 *.sln
 *.sw?
+Session.vim
 
 package-lock.json
