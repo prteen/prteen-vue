@@ -1,7 +1,7 @@
 import storage from '../services/storage'
 
 const api = {
-  endpoint: "http://localhost:8080",
+  endpoint: "https://prteen.onrender.com",
   base_uri: "/api/v1"
 }
 
