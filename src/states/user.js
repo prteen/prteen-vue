@@ -23,6 +23,15 @@ function set_user(u) {
   return user
 }
 
+function logged() {
+  return user.token != undefined
+}
+
+function logout() {
+  clear_user()
+  storage.clear()
+}
+
 function clear_user() {
   user.username = undefined
   user.email = undefined
@@ -44,5 +53,5 @@ function save_to_storage() {
   storage.set("id", user.id)
 }
 
-export { user, set_user, clear_user, update_user, save_to_storage }
+export { user, set_user, clear_user, update_user, save_to_storage, logged, logout }
 

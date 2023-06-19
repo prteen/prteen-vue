@@ -1,20 +1,31 @@
-<script setup>
-import { user } from './states/auth.js'
+<script setup> 
 import { RouterLink, RouterView } from 'vue-router'
 </script>
 
-<template>
-  <header>
-    <div class="wrapper">
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/register">Register</RouterLink><br>
-        <RouterLink to="/login">Login</RouterLink><br>
-      </nav>
-    </div>
-  </header>
+<script>
+import { user, logged, logout } from './states/user.js'
+</script>
 
-  <RouterView />
+<template>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Prteen</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+        <RouterLink to="/">Home</RouterLink>
+        <RouterLink v-if="!logged()" to="/register">Register</RouterLink>
+        <RouterLink v-if="!logged()" to="/login">Login</RouterLink>
+        <RouterLink v-if="logged()" to="/party/create">Create Party</RouterLink>
+        <RouterLink v-if="logged()" to="/friendships">Friendships</RouterLink>
+        <a v-if="logged()" @click="logout()" href="#">Logout</a>
+    </div>
+  </div>
+</nav>
+  <div class="container">
+    <RouterView />
+  </div>
 </template>
 
 <style scoped>
@@ -28,10 +39,17 @@ header {
   margin: 0 auto 2rem;
 }
 
+.container {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 0 var(--section-gap);
+  align-items: center;
+}
+
 nav {
   width: 100%;
   font-size: 12px;
-  text-align: center;
+  text-align: left;
   margin-top: 2rem;
 }
 

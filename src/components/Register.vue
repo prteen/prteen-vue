@@ -1,5 +1,5 @@
 <script>
-import { user, set_user, save_to_storage } from '../states/auth.js'
+import { user, set_user, save_to_storage } from '../states/user.js'
 import { register, login } from '../services/api.js'
 
 export default {

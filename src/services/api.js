@@ -17,7 +17,8 @@ export async function query(method, uri, data) {
   const response = await fetch(api.endpoint + api.base_uri + uri, {
     method: method,
     headers: headers,
-    body: JSON.stringify(data)
+    body: JSON.stringify(data),
+    cache: 'no-cache', 
   })
   return await response.json()
 }
@@ -34,3 +35,26 @@ export async function me() {
   return await query("GET", "/auth/me")
 }
 
+export async function create_party(party) {
+  return await query("POST", "/parties/organizers/", party)
+}
+
+export async function get_friendships() {
+  return await query("GET", "/friendships")
+}
+
+export async function get_user_by_id(id) {
+  return await query("GET", "/users/id/" + id)
+}
+
+export async function update_friendship(id, stat) {
+  return await query("PUT", "/friendships/" + id, {status: stat})
+}
+
+export async function delete_friendship(id) {
+  return await query("DELETE", "/friendships/" + id)
+}
+
+export async function new_friendship(username) {
+  return await query("POST", "/friendships", {to: username})
+}
