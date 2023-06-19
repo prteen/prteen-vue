@@ -30,7 +30,7 @@ import { user } from '../states/user.js'
 <style scoped>
 
 .homepage { 
-  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(0, 0, 0, 0.5)), url('src/assets/homepage.jpg');
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(0, 0, 0, 0.5)), url('/src/assets/homepage.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
