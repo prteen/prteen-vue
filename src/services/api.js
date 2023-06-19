@@ -67,12 +67,15 @@ export async function join_party(id) {
   return await query("PUT", "/parties/join/" + id, {action: 'join'})
 }
 
+export async function unjoin_party(id) {
+  return await query("PUT", "/parties/join/" + id, {action: 'leave'})
+}
+
 export async function get_friendships() {
   return await query("GET", "/friendships")
 }
 
 export async function get_user_by_id(id) {
-  debugger
   return await query("GET", "/users/id/" + id)
 }
 

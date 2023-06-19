@@ -6,7 +6,7 @@
 
 <template>
   <div>
-    <PartyDetails v-bind:party="party" v-on@join="refresh" />
+    <PartyDetails v-if="!loading" v-bind:party="party" @join="refresh" />
   </div>
 </template>
 
@@ -18,6 +18,7 @@ export default {
   data() {
     return {
       party: {},
+      loading: true
     }
   },
   mounted() {
@@ -28,9 +29,9 @@ export default {
     refresh() {
       const id = this.$route.params.id
       get_party(id).then(response => {
-        console.log(response)
         this.party = response
         this.party.participants_number = this.party.participants.length
+        this.loading = false
       }).catch(error => {
         console.log(error)
         alert(JSON.stringify(error))

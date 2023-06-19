@@ -12,7 +12,7 @@
         <input type="submit" value="Refresh" />
       </form>
     </div>
-    <div v-for="item in parties">
+    <div v-if="!loading" v-for="item in parties">
         <PartyCard :item="item" />
     </div>
   </div>
@@ -25,6 +25,7 @@ export default {
   data() {
     return {
       parties: [],
+      loading: true
     }
   },
   mounted() {
@@ -33,9 +34,8 @@ export default {
   methods: {
     refresh() {
       get_parties().then(response => {
-        console.log(response)
         this.parties = response
-        console.log(this.parties)
+        this.loading = false
       }).catch(error => {
         console.log(error)
         alert(JSON.stringify(error))

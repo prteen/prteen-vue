@@ -1,4 +1,5 @@
 <script>
+  import strftime from 'strftime'
   import { delete_party } from '../services/api.js' 
   export default {
     name: 'PartyCard',
@@ -20,16 +21,28 @@
           console.log("Cannot delte party: " + JSON.stringify(err))
         })
       },
+      format_date() {
+        return strftime("%y/%m/%d %H:%M", new Date(this.item.date))
+      },
+      location_string() {
+        console.log(this.item)
+        if(!this.item.location)
+          return "none"
+        if(this.item.location.string)
+          return this.item.location.string
+        if(this.item.location.coords)
+          return this.item.location.coords
+        return "none"
+      }
     }
   }
 </script>
 
 <template>
-    <v-card :ref="item._id" class="card-content">
-      Image: <v-img src="{{ item.image }}" alt="" contain height="50px" width="50px"></v-img><br>
+    <div :ref="item._id" class="card-content">
       Title: {{ item.title }}<br>
-      Date: {{ item.date }}<br>
-      Location: {{ item.location }}<br>
+      Date: {{ format_date() }}<br>
+      Location: {{ location_string() }}<br>
       <span>
         Privacy:
         <i v-if="!item.private" class="material-icons">public</i>
@@ -39,7 +52,7 @@
         <RouterLink :to="item._id + '/edit'"><input type="button" class="button is-success" value="Edit"></RouterLink>
         <input type="button" class="button is-success" @click="delete_party" value="Delete">
       </div> 
-    </v-card>
+    </div>
 </template>
 
 <style scoped>
