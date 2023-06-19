@@ -3,8 +3,6 @@ import VueGoogleAutocomplete from "vue-google-autocomplete";
 </script>
 
 <script>
-import { PLACES_API_KEY } from "../config.js";
-
 export default {
   data() {
     return {
