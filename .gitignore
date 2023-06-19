@@ -27,7 +27,7 @@ coverage
 *.ntvs*
 *.njsproj
 *.sln
-*.sw?i
+*.sw?
 Session.vim
 
 package-lock.json
