@@ -1,6 +1,6 @@
 <script setup>
-  import PartyCard from '../components/PartyCard.vue'
-  import { get_parties } from '../services/api.js' 
+  import PartyCard from '../components/PartyCardOrganizer.vue'
+  import { get_parties_organizer } from '../services/api.js' 
 </script>
 
 
@@ -12,20 +12,21 @@
         <input type="submit" value="Refresh" />
       </form>
     </div>
-    <div v-if="!loading" v-for="item in parties">
-        <PartyCard :item="item" />
+    <div v-for="item in parties">
+      <PartyCard 
+        :item="item"
+        @delete="delete_card(item._id)"
+      />
     </div>
   </div>
 </template>
 
 
 <script>
-
 export default {
   data() {
     return {
       parties: [],
-      loading: true
     }
   },
   mounted() {
@@ -33,14 +34,19 @@ export default {
   },
   methods: {
     refresh() {
-      get_parties().then(response => {
+      get_parties_organizer().then(response => {
+        console.log(response)
         this.parties = response
-        this.loading = false
+        console.log(this.parties)
       }).catch(error => {
         console.log(error)
         alert(JSON.stringify(error))
       })
+    },
+    delete_card(id) {
+      this.parties = this.parties.filter(p => p._id != id)
     }
- }
+  },
+
 }
 </script>

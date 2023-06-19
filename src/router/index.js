@@ -22,11 +22,11 @@ const router = createRouter({
     },
     {
       path: '/party/create',
-      name: 'create-party',
+      name: 'party-create',
       component: () => import('../views/CreatePartyView.vue')
     },
     {
-      path: '/friendships',
+      path: '/friendships/',
       name: 'friendships',
       component: () => FriendshipView
     },
@@ -36,14 +36,24 @@ const router = createRouter({
       component: () => import('../views/NewFriendshipView.vue')
     },
     {
-      path: '/parties',
+      path: '/parties/',
       name: 'parties',
       component: () => import('../views/PartiesView.vue')
     },
     {
-      path: '/parties/id/:id',
+      path: '/parties/:id',
       name: 'party-details',
       component: () => import('../views/PartyDetailsView.vue')
+    },
+    {
+      path: '/party/my/',
+      name: 'party-my',
+      component: () => import('../views/MyPartiesView.vue')
+    },
+    {
+      path: '/party/my/:id/edit',
+      name: 'party-edit',
+      component: () => import('../views/UpdatePartyView.vue')
     },
   ]
 })

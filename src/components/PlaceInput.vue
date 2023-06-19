@@ -14,18 +14,25 @@ export default {
   props: {
     modelValue: {
       type: String,
-      default: ""
+      default: undefined
     },
   },
   mounted() {
     let data = JSON.parse(this.modelValue)
+    if(data === null) {
+      this.string = ""
+      this.coords = {}
+      this.initial = ""
+      this.$emit("update:modelValue", null)
+      return
+    }
     this.string = data.string
     this.coords = data.coords
     this.initial = data.string
   },
   methods: {
     update(data) {
-      this.string = data.formatted_address;
+      this.string = document.getElementById("map").value
       this.coords = {
         lat: data.latitude,
         lng: data.longitude

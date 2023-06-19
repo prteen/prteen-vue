@@ -27,7 +27,11 @@ coverage
 *.ntvs*
 *.njsproj
 *.sln
+<<<<<<< Updated upstream
 *.sw?
+=======
+*.sw?i
+>>>>>>> Stashed changes
 Session.vim
 
 package-lock.json

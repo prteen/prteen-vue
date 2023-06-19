@@ -1,48 +1,54 @@
-<script setup>
-  const props = defineProps(['item'])
-  console.log(props)
-</script>
-
 <script>
-  export default {
-    name: 'PartyCard',
-    props: ['item'],
-    data() {
-      return {
-      }
+import strftime from 'strftime'
+
+export default {
+  name: 'PartyCard',
+  data() {
+    return {
+      loading: true
+    }
+  },
+  props: {
+    item: Object,
+  },
+  mounted() {
+    try {
+      this.item.location = JSON.parse(this.item.location)
+    } catch(e) {
+      this.item.location = "N/A"
+    }
+  },
+  methods: {
+    view_details() {
+      const id = this.item._id
+      this.$router.push({ path: `/parties/id/${id}` })
     },
-    mounted() {
+    format_date() {
+      return strftime("%y/%m/%d %H:%M", new Date(this.item.date))
     },
-    methods: {
-      view_details() {
-        const id = this.item._id
-        this.$router.push({ path: `/parties/id/${id}` })
-      },
+    location_string() {
+      console.log(this.item)
+      if(!this.item.location)
+        return "none"
+      if(this.item.location.string)
+        return this.item.location.string
+      if(this.item.location.coords)
+        return this.item.location.coords
+      return "none"
     }
   }
+}
 </script>
 
 <template>
-    <v-card class="card-content">
-      <tr>
-      Image: <v-img src="{{ item.image }}" alt="" contain height="50px" width="50px">
-</v-img>
-      </tr>
-      <tr>
-          Title: {{ item.title }}
-      </tr>
-      <tr>
-          Date: {{ item.date }}
-      </tr>
-      <tr>
-          Location: {{ item.location }}
-      </tr>
+    <div class="card-content">
+      Title: {{ item.title }}<br>
+      Date: {{ format_date() }}<br>
+      Location: {{ location_string() }}<br>
       <div class="card-footer">
-            <button class="button is-success" @click="view_details()">
-              View
-            </button>
-      </div> 
-    </v-card>
+        <RouterLink :to="item._id"><input type="button" class="button is-success" value="View"></RouterLink>
+      </div>
+    </div>
 </template>
 
 <style scoped>
