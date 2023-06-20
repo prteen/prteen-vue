@@ -11,6 +11,7 @@
       item: Object,
     },
     mounted() {
+      this.item.location = JSON.parse(this.item.location)
     },
     methods: {
       delete_party(item) {
@@ -22,7 +23,7 @@
         })
       },
       format_date() {
-        return strftime("%y/%m/%d %H:%M", new Date(this.item.date))
+        return strftime("%Y/%m/%d %H:%M", new Date(this.item.date))
       },
       location_string() {
         console.log(this.item)
