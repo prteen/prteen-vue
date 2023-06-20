@@ -29,7 +29,7 @@ export default {
         <RouterLink to="/parties/">Parties</RouterLink>
         <RouterLink v-if="logged()" to="/party/create">Create Party</RouterLink>
         <RouterLink v-if="logged()" to="/party/my/">My Parties</RouterLink>
-        <RouterLink v-if="logged()" to="/friendships/">Friendships</RouterLink>
+        <RouterLink v-if="logged()" to="/friendships">Friendships</RouterLink>
         <a v-if="logged()" @click="log_out()" href="#">Logout</a>
     </div>
   </div>
