@@ -16,7 +16,7 @@ export default {
         if(result.type != "success"){
           alert("Error creating party: " + JSON.stringify(result))
         } else {
-          // this.$router.push({ name: "party-view", params: { id: result.id } })
+          this.$router.push({ name: "party-my" })
         }
       }).catch(err => {
         console.log(err)

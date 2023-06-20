@@ -65,6 +65,5 @@ label {
       <label :for="index">{{ item.username }}</label><br>
     </template>
     <loader :loading="loading" color="#0277FF" radius="2em" />
-    {{ loading }}
   </main>
 </template>
